@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Sulav Dahal</h3>
+    <div class="row mt-2">
+      <div class="col-xs-12">
+        <div class="pull-left">
+          <img
+            src="https://scontent-sjc3-1.xx.fbcdn.net/v/t1.0-9/116155393_1371908999671974_6832323679329311830_o.jpg?_nc_cat=108&ccb=2&_nc_sid=09cbfe&_nc_ohc=zFk1O7aTA6wAX94OMJ5&_nc_ht=scontent-sjc3-1.xx&oh=96bf1f725a0872f84f8ed3a1fbd5228a&oe=60242191"
+            alt="user"
+            class="img-responsive"
+            style="max-height: 70px"
+          />
+        </div>
+        <div class="pull-right btn-toolbar">
+          <button class="btn btn-primary">Edit</button>
+          <button class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body" *ngFor="let item of contacts">
+    <p>Email: {{ item.email }}</p>
+    <p>Phone: {{ item.phone }}</p>
+  </div>
+</div>

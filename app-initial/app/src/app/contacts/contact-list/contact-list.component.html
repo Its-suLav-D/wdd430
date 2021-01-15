@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Contacts</h3>
+    <button class="btn btn-primary" (click)="addUser()">Add New User</button>
+  </div>
+  <div class="panel-body">
+    <!-- List group -->
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let item of contacts">
+        {{ item.name }}
+        <span class="avatar avatar-xxl avatar-circle"
+          ><img
+            src="{{ item.imageUrl }}"
+            alt="{{ item.name }}"
+            class="avatar-img"
+        /></span>
+      </li>
+    </ul>
+  </div>
+</div>
