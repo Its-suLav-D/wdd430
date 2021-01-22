@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cms';
+  loadPage='contact'
+
+  thisLink(page:string) {
+    this.loadPage=page
+  }
 }

@@ -1,9 +1,12 @@
-<cms-header></cms-header>
+<cms-header (navigateTo)="thisLink($event)"></cms-header>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <cms-contacts></cms-contacts>
+      <cms-contacts *ngIf="loadPage === 'contact'"></cms-contacts>
+      <cms-documents *ngIf="loadPage === 'document'"></cms-documents>
+      <!-- <cms-messages *ngIf="loadPage === 'message'" ></cms-messages> -->
+      <cms-message-list *ngIf="loadPage === 'message'"></cms-message-list>
     </div>
   </div>
 </div>

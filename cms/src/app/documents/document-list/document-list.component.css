@@ -1,0 +1,15 @@
+.panel-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center !important;
+  }
+  
+  .d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .avatar {
+    font-size:20px
+  }
