@@ -1,25 +1,35 @@
 .avatar {
-    position: relative;
-    display: inline-block;
-    width: 3.125rem;
-    height: 3.125rem;
-    border-radius: 0.3125rem;
-  }
-  
-  .avatar-img {
-    max-width: 100%;
-    height: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
-    border-radius: 0.3125rem;
-  }
-  
-  .avatar-circle {
-    border-radius: 50%;
-  }
-  
-  .d-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  position: relative;
+  display: inline-block;
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 0.3125rem;
+}
+
+.avatar-img {
+  max-width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 0.3125rem;
+}
+
+.avatar-circle {
+  border-radius: 50%;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.documentDiv {
+  width: 9rem;
+  height: 11rem;
+  margin: 2px;
+  font-size: 1.3rem;
+  border: solid thin darkgrey;
+  float: left;
+  padding: 0.25rem;
+}

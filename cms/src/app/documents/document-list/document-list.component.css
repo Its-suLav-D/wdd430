@@ -1,15 +1,14 @@
-.panel-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center !important;
-  }
-  
-  .d-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.center-panel {
+  margin: 0 auto;
+  width: 38rem;
+}
 
-  .avatar {
-    font-size:20px
-  }
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.pad-left-right {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}

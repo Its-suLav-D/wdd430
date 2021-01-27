@@ -1,25 +1,16 @@
-
 <div class="panel panel-danger">
-    <!-- Default panel contents -->
-    <div class="panel-heading">
-      <div class="pull-left">
-        <h3 class="panel-title">Documents</h3>
-      </div>
-      <div class="pull-right">
-        <button class="btn btn-primary">Add Documents</button>
-      </div>
-    </div>
-    <!-- List group -->
-    <div class="panel-body">
-        <a href="#" class="list-group-item d-flex">
-
-            <div class="item-left">
-                <h4 class="list-group-item-heading">Assignment 1.1</h4>
-              </div>
-        
-              <div class="item-right avatar">
-                <i class="fas fa-file-word"></i>
-              </div>
-        </a>
+  <div class="panel-heading">
+    <div class="row pad-left-right">
+      <span class="pull-left title">Documents</span>
+      <a class="btn btn-success pull-right">Add Document</a>
     </div>
   </div>
+  <div class="panel-body">
+    <div class="center-panel">
+      <cms-document-item
+        *ngFor="let doc of documents"
+        [document]="doc"
+      ></cms-document-item>
+    </div>
+  </div>
+</div>
