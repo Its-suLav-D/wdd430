@@ -5,7 +5,6 @@ import { DocumentService } from './document.service';
   selector: 'cms-documents',
   templateUrl: './documents.component.html',
   styleUrls: ['./documents.component.css'],
-  providers: [DocumentService],
 })
 export class DocumentsComponent implements OnInit {
   public selectedDocument: Document;

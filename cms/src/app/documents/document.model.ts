@@ -1,7 +1,8 @@
 export class Document {
   constructor(
-    public cTitle: string,
-    public description: string,
-    public cUrl: string
+    public id: string,
+    public name: string,
+    public url: string,
+    public children: Document[]
   ) {}
 }

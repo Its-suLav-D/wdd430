@@ -13,6 +13,6 @@ export class DocumentListComponent implements OnInit {
   constructor(private documentSl: DocumentService) {}
 
   ngOnInit() {
-    this.documents = this.documentSl.getDocument();
+    this.documents = this.documentSl.getDocuments();
   }
 }

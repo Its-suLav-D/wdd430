@@ -1,24 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Contact } from '../../contact.model';
+import { ContactService } from '../../contact.service';
 
 @Component({
   selector: 'cms-contact-item',
   templateUrl: './contact-item.component.html',
-  styleUrls: ['./contact-item.component.css']
+  styleUrls: ['./contact-item.component.css'],
 })
 export class ContactItemComponent implements OnInit {
+  @Input() item: Contact;
 
-  @Output() selectedPerson = new EventEmitter<void>();
+  constructor(private contactService: ContactService) {}
 
-  @Input() item: Contact
+  ngOnInit(): void {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  onSelect() {
+    this.contactService.conctSelected.emit(this.item);
   }
-
-  onSelect(){
-    this.selectedPerson.emit()
-  }
-
 }

@@ -1,13 +1,8 @@
-
 <a href="#" class="list-group-item d-flex" (click)="onSelect()">
-    <div class="item-left">
-      <h4 class="list-group-item-heading">{{ item.name }}</h4>
-    </div>
-    <div class="item-right avatar">
-      <img
-        src="{{ item.imageUrl }}"
-        alt="{{ item.name }}"
-        class="avatar-img avatar-circle"
-      />
-    </div>
-  </a>
+  <div class="item-left">
+    <h4 class="list-group-item-heading">{{ item.name }}</h4>
+  </div>
+  <div class="item-right avatar">
+    <img src="{{ item?.imageUrl }}" alt="{{ item?.name}}" class="avatar-img avatar-circle" />
+  </div>
+</a>
