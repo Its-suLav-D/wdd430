@@ -12,8 +12,8 @@ export class DocumentItemComponent implements OnInit {
 
   constructor(private documentSl: DocumentService) {}
 
-  ngOnInit(): void {}
-  onSelectCourse() {
-    this.documentSl.docSelected.emit(this.document);
-  }
+  ngOnInit() {}
+  // onSelectCourse() {
+  //   this.documentSl.docSelected.emit(this.document);
+  // }
 }

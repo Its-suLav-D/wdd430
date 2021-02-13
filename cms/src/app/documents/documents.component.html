@@ -3,15 +3,10 @@
     <cms-document-list></cms-document-list>
   </div>
   <div class="col-md-7">
-    <cms-document-detail
+    <!-- <cms-document-detail
       *ngIf="selectedDocument; else infoDoc"
       [docs]="selectedDocument"
-    ></cms-document-detail>
-    <ng-template #infoDoc>
-      <div class="panel panel-info">
-        <div class="panel-heading">Please Select a Document</div>
-        <div class="panel-body">Your Documents will be displayed Here</div>
-      </div>
-    </ng-template>
+    ></cms-document-detail> -->
+    <router-outlet></router-outlet>
   </div>
 </div>

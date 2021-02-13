@@ -7,12 +7,12 @@ import { DocumentService } from './document.service';
   styleUrls: ['./documents.component.css'],
 })
 export class DocumentsComponent implements OnInit {
-  public selectedDocument: Document;
+  // public selectedDocument: Document;
   constructor(private documentSl: DocumentService) {}
 
   ngOnInit() {
-    this.documentSl.docSelected.subscribe((doc: Document) => {
-      this.selectedDocument = doc;
-    });
+    // this.documentSl.docSelected.subscribe((doc: Document) => {
+    //   this.selectedDocument = doc;
+    // });
   }
 }
