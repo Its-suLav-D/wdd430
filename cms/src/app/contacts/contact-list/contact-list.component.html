@@ -5,15 +5,12 @@
       <h3 class="panel-title">Contacts</h3>
     </div>
     <div class="pull-right">
-      <button class="btn btn-primary">Add User</button>
+      <button class="btn btn-primary" (click)="onNewContact()">Add User</button>
     </div>
   </div>
   <!-- List group -->
   <div class="panel-body">
-    <cms-contact-item
-    *ngFor="let eachPerson of contacts"
-    [item]="eachPerson"
-    (selectedPerson)="onSelectedPerson(eachPerson)"
-    ></cms-contact-item>
+    <cms-contact-item *ngFor="let eachPerson of contacts" [item]="eachPerson"
+      (selectedPerson)="onSelectedPerson(eachPerson)"></cms-contact-item>
   </div>
 </div>
