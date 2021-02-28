@@ -1,0 +1,7 @@
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.mx-2 {
+  margin-left: 1.5rem;
+}

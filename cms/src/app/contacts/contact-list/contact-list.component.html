@@ -1,4 +1,4 @@
-<div class="panel panel-danger">
+<div class="panel panel-danger sticky" id="contact-list">
   <!-- Default panel contents -->
   <div class="panel-heading">
     <div class="pull-left">
@@ -9,8 +9,27 @@
     </div>
   </div>
   <!-- List group -->
-  <div class="panel-body">
-    <cms-contact-item *ngFor="let eachPerson of contacts" [item]="eachPerson"
-      (selectedPerson)="onSelectedPerson(eachPerson)"></cms-contact-item>
+
+  <div class="panel-body scroller">
+    <div
+      class="row"
+      cdkDropList
+      #contactList="cdkDropList"
+      [cdkDropListData]="contacts"
+      cdkDropListConnectedTo="groupList"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="col-xs-12">
+        <cms-contact-item
+          *ngFor="let eachPerson of contacts"
+          [item]="eachPerson"
+          cdkDrag
+          [cdkDragData]="eachPerson"
+        ></cms-contact-item>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- [item]="eachPerson" dnd-draggable [dragEnabled]="true"
+[dragData]="eachPerson" [dropZones]="['contactGroup']" -->

@@ -2,6 +2,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center !important;
+  position: sticky;
+  width: 100%;
+  z-index: 99999;
+  top: 0;
+
 }
 
-
+#contact-list {
+  max-height: 500px;
+  overflow: auto;
+  overflow-x: hidden;
+}

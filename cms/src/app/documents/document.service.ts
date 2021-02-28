@@ -2,6 +2,7 @@ import { Document } from './document.model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
+import { isRegExp } from 'util';
 
 @Injectable({
   providedIn: 'root',
@@ -48,18 +49,19 @@ export class DocumentService {
     return maxId;
   }
   addDocument(newDocument: Document) {
-    if (newDocument === null || newDocument === undefined) {
+    if (!newDocument) {
       return;
     }
     this.maxDocumentId++;
-    let newDocId = Number(newDocument.id);
-    newDocId = this.maxDocumentId;
+
+    // let newDocId = Number(newDocument.id);
+    // newDocId = this.maxDocumentId;
+    newDocument.id = this.maxDocumentId.toString();
     this.document.push(newDocument);
-    const documentListClone = this.document.slice();
-    this.documentChangedEvent.next(documentListClone);
+    this.documentChangedEvent.next(this.document.slice());
   }
   updateDocument(originalDocument: Document, newDocument: Document) {
-    if (!originalDocument || newDocument) {
+    if (!(originalDocument || newDocument)) {
       return;
     }
     const pos = this.document.indexOf(originalDocument);
@@ -68,7 +70,6 @@ export class DocumentService {
     }
     newDocument.id = originalDocument.id;
     this.document[pos] = newDocument;
-    const documentListClone = this.document.slice();
-    this.documentChangedEvent.next(documentListClone);
+    this.documentChangedEvent.next(this.document.slice());
   }
 }

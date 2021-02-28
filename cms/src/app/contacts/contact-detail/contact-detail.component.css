@@ -1,3 +1,11 @@
 .mt-2 {
-  margin-top: 2em;
+  margin-top: 2em !important;
+}
+
+.my-0 {
+  margin-top: 0px;
+}
+
+.mb-2 {
+  margin-bottom: 1em;
 }

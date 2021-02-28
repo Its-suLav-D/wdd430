@@ -61,11 +61,10 @@ export class ContactService {
     this.maxContactId++;
     newContact.id = this.maxContactId;
     this.contacts.push(newContact);
-    const contactListClone = this.contacts.slice();
-    this.conctChangedEvents.next(contactListClone);
+    this.conctChangedEvents.next(this.contacts.slice());
   }
-  updateContact(newContact: Contact, originalContact: Contact) {
-    if (!newContact || originalContact) {
+  updateContact(originalContact: Contact, newContact: Contact) {
+    if (!(newContact || originalContact)) {
       return;
     }
     const pos = this.contacts.indexOf(originalContact);
@@ -74,7 +73,6 @@ export class ContactService {
     }
     newContact.id = originalContact.id;
     this.contacts[pos] = newContact;
-    const contactListClone = this.contacts.slice();
-    this.conctChangedEvents.next(contactListClone);
+    this.conctChangedEvents.next(this.contacts.slice());
   }
 }

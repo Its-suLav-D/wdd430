@@ -1,4 +1,48 @@
-<div class="panel panel-info">
-  <div class="panel-heading">Edit Documetns</div>
-  <div class="panel-body">Your Edited Documents will be displayed Here</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <form id="document-edit" [formGroup]="documentForm" (ngSubmit)="documentSubmit()">
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="name">Document Title:</label>
+          <input type="text" id="name" class="form-control" size="120" max="120"
+            placeholder="Web Full Stack Development" formControlName="name" #name>
+        </div>
+        <span class="help-block mx-2"
+          *ngIf="!documentForm.get('name').valid && documentForm.get('name').touched">Document
+          Title is Required. Please fill the
+          field!!</span>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="description">Document Description:</label>
+          <input type="text" id="description" class="form-control" size="120" max="255" formControlName="description">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="url">Document URL:</label>
+          <input type="text" id="url" class="form-control" size="150" max="255" formControlName="url" #url>
+        </div>
+        <span class="help-block mx-2" *ngIf="!documentForm.get('url').valid && documentForm.get('url').touched">Document
+          Url is Required. Please fill the
+          field!!</span>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 btn-toolbar">
+          <button class="btn btn-success" type="submit"
+            [disabled]="!documentForm.valid">{{editMode ? 'Update': 'Save'}}</button>
+          <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+
+
+
+
+    </form>
+
+  </div>
 </div>

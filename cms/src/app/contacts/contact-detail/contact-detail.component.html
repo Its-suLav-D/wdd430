@@ -17,6 +17,12 @@
     <p>Email: {{ contact.email }}</p>
     <p>Phone: {{ contact.phone }}</p>
   </div>
+  <div class="panel-footer" *ngIf="contact.group">
+    <h3 class="panel-title mb-2">Group Members:</h3>
+    <div *ngFor="let item of contact.group">
+      <small class="mt-2">{{item.name}}</small>
+    </div>
+  </div>
 
   <div class="alert alert-danger" role="alert" *ngIf="display">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
