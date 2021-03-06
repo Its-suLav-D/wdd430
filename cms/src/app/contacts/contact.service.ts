@@ -2,6 +2,7 @@ import { Contact } from './contact.model';
 import { MOCKCONTACTS } from './MOCKCONTACTS';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +12,10 @@ export class ContactService {
   private maxContactId: number;
 
   private contacts: Contact[] = [];
-  constructor() {
-    this.contacts = MOCKCONTACTS;
+  constructor(private http: HttpClient) {
+    // this.contacts = MOCKCONTACTS;
     this.maxContactId = this.getMaxId();
+    this.getContactFromFB();
   }
 
   getContacts(): Contact[] {
@@ -42,7 +44,8 @@ export class ContactService {
       return;
     }
     this.contacts.splice(pos, 1);
-    this.conctChangedEvents.next(this.contacts.slice());
+    // this.conctChangedEvents.next(this.contacts.slice());
+    this.storeContactToFB();
   }
   getMaxId(): number {
     let maxId: number = 0;
@@ -61,7 +64,8 @@ export class ContactService {
     this.maxContactId++;
     newContact.id = this.maxContactId;
     this.contacts.push(newContact);
-    this.conctChangedEvents.next(this.contacts.slice());
+    // this.conctChangedEvents.next(this.contacts.slice());
+    this.storeContactToFB();
   }
   updateContact(originalContact: Contact, newContact: Contact) {
     if (!(newContact || originalContact)) {
@@ -73,6 +77,43 @@ export class ContactService {
     }
     newContact.id = originalContact.id;
     this.contacts[pos] = newContact;
-    this.conctChangedEvents.next(this.contacts.slice());
+    // this.conctChangedEvents.next(this.contacts.slice());
+    this.storeContactToFB();
+  }
+
+  getContactFromFB() {
+    this.http
+      .get<Contact[]>(
+        'https://cms-d81f4-default-rtdb.firebaseio.com/contacts.json'
+      )
+      .subscribe((contact: Contact[]) => {
+        this.contacts = contact;
+        this.maxContactId = this.getMaxId();
+        this.contacts.sort((a, b) =>
+          a.name < b.name ? 1 : a.name > b.name ? -1 : 0
+        );
+        this.conctChangedEvents.next(this.contacts.slice());
+      });
+  }
+
+  // Store Contacts in Database
+
+  storeContactToFB() {
+    let contacts = JSON.stringify(this.contacts);
+
+    // Create a Header for Content Type
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    this.http
+      .put(
+        'https://cms-d81f4-default-rtdb.firebaseio.com/contacts.json',
+        contacts,
+        { headers }
+      )
+      .subscribe(() => {
+        this.conctChangedEvents.next(this.contacts.slice());
+      });
   }
 }

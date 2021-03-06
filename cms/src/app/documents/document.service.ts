@@ -2,19 +2,19 @@ import { Document } from './document.model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
-import { isRegExp } from 'util';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
 export class DocumentService {
   // public docSelected = new EventEmitter<Document>();
   public documentChangedEvent = new Subject<Document[]>();
-  private document: Document[];
+  private document: Document[] = [];
   maxDocumentId: number;
 
-  constructor() {
-    this.document = MOCKDOCUMENTS;
+  constructor(private http: HttpClient) {
+    // this.document = MOCKDOCUMENTS;
+    this.getDocumentFromFB();
     this.maxDocumentId = this.getMaxId();
   }
 
@@ -34,9 +34,9 @@ export class DocumentService {
       return;
     }
     this.document.splice(pos, 1);
-    // const result = this.document.filter((doc) => doc.id !== id);
-    // this.documentChangedEvent.emit(this.document.slice());
-    this.documentChangedEvent.next(this.document.slice());
+    // this.documentChangedEvent.next(this.document.slice());
+    // Store the document to the Firebase
+    this.storeDocumentToFB();
   }
   getMaxId(): number {
     let maxId = 0;
@@ -58,7 +58,8 @@ export class DocumentService {
     // newDocId = this.maxDocumentId;
     newDocument.id = this.maxDocumentId.toString();
     this.document.push(newDocument);
-    this.documentChangedEvent.next(this.document.slice());
+    // this.documentChangedEvent.next(this.document.slice());
+    this.storeDocumentToFB();
   }
   updateDocument(originalDocument: Document, newDocument: Document) {
     if (!(originalDocument || newDocument)) {
@@ -70,6 +71,59 @@ export class DocumentService {
     }
     newDocument.id = originalDocument.id;
     this.document[pos] = newDocument;
-    this.documentChangedEvent.next(this.document.slice());
+    // this.documentChangedEvent.next(this.document.slice());
+    this.storeDocumentToFB();
+  }
+
+  // Firebase Setup
+
+  getDocumentFromFB() {
+    this.http
+      .get<Document[]>(
+        'https://cms-d81f4-default-rtdb.firebaseio.com/documents.json'
+      )
+      //  Success
+      .subscribe((document: Document[]) => {
+        this.document = document;
+        this.maxDocumentId = this.getMaxId();
+        //sort alphabetically by name
+        this.document.sort((a, b) =>
+          a.name < b.name ? 1 : a.name > b.name ? -1 : 0
+        );
+        this.documentChangedEvent.next(this.document.slice());
+      }),
+      // Error Message
+      (error: any) => {
+        console.log(error);
+      };
+  }
+
+  //  Store Documents in Database
+
+  storeDocumentToFB() {
+    // Stringify -- convert it to JSON
+    let documents = JSON.stringify(this.document);
+
+    // Create a header for content type
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    // Put Method to store the documents in the Firebase
+
+    // Put will overide what was their earlier.
+
+    this.http
+      .put(
+        'https://cms-d81f4-default-rtdb.firebaseio.com/documents.json',
+        documents,
+        {
+          headers: headers,
+        }
+      )
+      .subscribe(() => {
+        //If We successfully put, signal that doucment list has changed and send a copy to document list
+        this.documentChangedEvent.next(this.document.slice());
+      });
   }
 }
