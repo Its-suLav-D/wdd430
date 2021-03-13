@@ -18,6 +18,6 @@ export class MessageItemComponent implements OnInit {
       Number(this.message.sender)
     );
     // this.messageSender = contact.name;
-    this.messageSender = contact ? contact.name : 'Contact Not found';
+    this.messageSender = contact ? contact.name : 'Sulav';
   }
 }
