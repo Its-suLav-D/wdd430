@@ -3,6 +3,7 @@ export class Message {
     public id: Number,
     public subject: string,
     public msgText: string,
-    public sender: string
+    public sender: string,
+    public _id: string
   ) {}
 }

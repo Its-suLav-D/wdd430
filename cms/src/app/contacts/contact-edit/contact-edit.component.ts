@@ -24,7 +24,7 @@ export class ContactEditComponent implements OnInit {
   contactForm: FormGroup;
   originalContact: Contact;
   editMode: boolean = false;
-  id_Contact: number;
+  id_Contact: string;
   contact: Contact;
   groupContacts: Contact[] = [];
   constructor(
@@ -35,7 +35,7 @@ export class ContactEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.id_Contact = Number(params['id']);
+      this.id_Contact = params['id'];
       this.originalContact = this.contactService.getContact(this.id_Contact);
       if (!params['id']) {
         this.editMode = false;

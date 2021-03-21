@@ -17,7 +17,7 @@ export class MessageListComponent implements OnInit {
     this.messageService.messageChangedEvent.subscribe((message: Message[]) => {
       this.messages = message;
     });
-    this.messageService.getMessageFromFB();
+    this.messageService.getMessages();
   }
 
   finalMessage(message: Message) {

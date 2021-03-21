@@ -60,6 +60,19 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist/cms/index.html"));
 });
 
+// Establish a connetion to the Mongodb Database
+mongoose.connect(
+  "mongodb://localhost:27017/cms",
+  { useNewUrlParser: true },
+  (err, res) => {
+    if (err) {
+      console.log("Connection failed: " + err);
+    } else {
+      console.log("Connected to database!");
+    }
+  }
+);
+
 // Define the port address and tell express to use this port
 const port = process.env.PORT || "3000";
 app.set("port", port);

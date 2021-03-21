@@ -10,14 +10,16 @@ import { Contact } from 'src/app/contacts/contact.model';
 })
 export class MessageItemComponent implements OnInit {
   @Input() message: Message;
-  messageSender: string = '';
+  messageSender: string;
   constructor(private contactService: ContactService) {}
 
   ngOnInit() {
-    const contact: Contact = this.contactService.getContact(
-      Number(this.message.sender)
-    );
-    // this.messageSender = contact.name;
-    this.messageSender = contact ? contact.name : 'Sulav';
+    try {
+      this.messageSender = this.contactService.getContact(
+        this.message.sender
+      ).name;
+    } catch {
+      this.messageSender = this.message.sender;
+    }
   }
 }

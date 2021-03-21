@@ -31,7 +31,7 @@ export class ContactListComponent implements OnInit, OnDestroy {
         this.contacts = contact;
       }
     );
-    this.contactService.getContactFromFB();
+    this.contactService.getContacts();
   }
   ngOnDestroy() {
     this.contactChangedSubscription.unsubscribe();

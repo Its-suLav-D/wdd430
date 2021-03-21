@@ -70,9 +70,12 @@ export class DocumentEditComponent implements OnInit {
       doc_url
     );
     if (this.editMode) {
-      this.documentService.updateDocument(this.originalDocument, new_Document);
+      this.documentService.updateDocumentToBackend(
+        this.originalDocument,
+        new_Document
+      );
     } else {
-      this.documentService.addDocument(new_Document);
+      this.documentService.addDocumentToBackend(new_Document);
     }
     console.log(this.documentForm);
     console.log(id);

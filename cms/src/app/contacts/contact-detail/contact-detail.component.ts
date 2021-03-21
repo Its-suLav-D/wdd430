@@ -10,7 +10,7 @@ import { ContactService } from '../contact.service';
 })
 export class ContactDetailComponent implements OnInit {
   contact: Contact;
-  id: Number;
+  id: string;
   display: boolean = false;
   constructor(
     private route: ActivatedRoute,
@@ -20,7 +20,7 @@ export class ContactDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.id = Number(params['id']);
+      this.id = params['id'];
       this.contact = this.contactService.getContact(this.id);
     });
   }

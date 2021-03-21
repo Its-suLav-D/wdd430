@@ -21,12 +21,12 @@ export class DocumentListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // this.documents = this.documentSl.getDocuments();
+    this.documentSl.getDocumentsFromBackend();
     this.docChangedSubscription = this.documentSl.documentChangedEvent.subscribe(
       (doc: Document[]) => {
         this.documents = doc;
       }
     );
-    this.documentSl.getDocumentFromFB();
   }
   ngOnDestroy() {
     this.docChangedSubscription.unsubscribe();
